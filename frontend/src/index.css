@@ -16,3 +16,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.alert-info {
+  @apply text-blue-600 bg-slate-100
+}
+
+.alert-danger {
+  @apply text-red-600 bg-slate-300
+}
