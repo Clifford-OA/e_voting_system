@@ -20,7 +20,8 @@
   "homepage": "https://github.com/Clifford-OA/e_voting_system#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.2.7"
+    "mongoose": "^6.2.7",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

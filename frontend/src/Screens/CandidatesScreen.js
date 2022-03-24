@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { listCandidates } from '../actions/candidateActions';
 import MessageBox from '../Components/MessageBox';
@@ -8,7 +8,8 @@ import LoadingBox from '../Components/LoadingBox';
 export default function CandidatesScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const { id } = useParams();
+    const candidateId = id;
 
     const [voteIds, setVoteIds] = useState([]);
     const [counter, setCounter] = useState(0);
@@ -18,22 +19,27 @@ export default function CandidatesScreen() {
 
     let keyObjects;
     let numberOfPositions;
-    let currentPositionCandidates;
+    let currentPositionCandidates = [];
 
     if (candidates) {
-        keyObjects = Object.keys(candidates);
+        let _position = [];
+        for (let index = 0; index < candidates.length; index++) {
+            _position = [..._position, candidates[index].position]
+        }
+        keyObjects = [...new Set(_position)];
         numberOfPositions = keyObjects.length;
-        currentPositionCandidates = candidates[keyObjects[counter]];
-        console.log(currentPositionCandidates)
+        for (let index = 0; index < candidates.length; index++) {
+            if(candidates[index].position === keyObjects[counter]){
+                currentPositionCandidates = [...currentPositionCandidates, candidates[index]];
+            }  
+        }
+    
     }
 
     const takeIdHandler = (cand) => {
         setVoteIds([...voteIds, cand._id]);
-        if (counter < numberOfPositions ) {
+        if (counter < numberOfPositions) {
             setCounter(counter + 1);
-
-            console.log(counter, ' counter')
-            console.log(numberOfPositions, ' numogposi')
         } else {
             console.log(voteIds, ' votes ids')
             // navigate('/done')
@@ -42,11 +48,11 @@ export default function CandidatesScreen() {
 
 
     useEffect(() => {
-        dispatch(listCandidates());
+        dispatch(listCandidates(candidateId));
         setVoteIds(voteIds)
         setCounter(counter)
         console.log(voteIds, ' ids')
-    }, [voteIds, counter, dispatch]);
+    }, [voteIds, counter, dispatch, candidateId]);
 
 
     return (

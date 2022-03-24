@@ -10,7 +10,7 @@ function App() {
         <Navbar />
         <main className='mt-3 py-20'>
           <Routes>
-            <Route path='/' element={<CandidatesScreen />}></Route>
+            <Route path='/:id' element={<CandidatesScreen />}></Route>
             <Route path='/done' element={<VotingCompletedScreen />}></Route>
           </Routes>
 
