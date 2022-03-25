@@ -19,7 +19,7 @@ export const updateVoteCountReducer = (state = { loading: true}, action) => {
         case UPDATE_VOTE_COUNT_REQUEST:
             return { loading: true };
         case UPDATE_VOTE_COUNT_SUCCESS:
-            return { loading: false, success: true};
+            return { loading: false, success: true, data: action.payload};
         case UPDATE_VOTE_COUNT_FAIL:
             return { loading: false, error: action.payload };
         default:

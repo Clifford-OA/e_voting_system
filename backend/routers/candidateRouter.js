@@ -80,9 +80,24 @@ candidateRouter.post('/seed', async (req, res) => {
 
 candidateRouter.get('/:id', async (req, res) => {
     const candidates = await Candidate.findById(req.params.id);
-    console.log(candidates);
     if (candidates) return res.send(candidates);
     return res.status(404).send({ message: 'Product Not Found' });
+});
+
+candidateRouter.put('/:id', async (req, res) => {
+    const candidates = await Candidate.findById(req.params.id);
+    if (candidates) {
+        const votesIds = req.body.voteIds;
+        candidates.candidates.forEach(element => {
+            if (votesIds.includes(element._id.toString())) {
+                element.vote++;
+            }
+        });
+        const updatedCandidates = await candidates.save();
+        res.send({ message: updatedCandidates });
+    } else {
+        res.status(404).send({ message: 'Candidates not found' });
+    }
 });
 
 export default candidateRouter;

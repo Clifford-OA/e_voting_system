@@ -13,10 +13,10 @@ export const listCandidates = (cand_id) => async (dispatch) => {
 
 
 export const updateVoteCount = (votingId, voteIds) => async (dispatch) => {
-    dispatch({ type: UPDATE_VOTE_COUNT_REQUEST, payload: voteIds });
+    dispatch({ type: UPDATE_VOTE_COUNT_REQUEST, payload: votingId });
     try {
-        const { data } = await axios.put(`/api/candidates/${votingId}`, voteIds);
-        dispatch({ type: UPDATE_VOTE_COUNT_SUCCESS, payload: data.candidates });
+        const { data } = await axios.put(`/api/candidates/${votingId}`, { 'voteIds': voteIds });
+        dispatch({ type: UPDATE_VOTE_COUNT_SUCCESS, payload: data });
     } catch (error) {
         const message =
             error.response && error.response.data.message

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { listCandidates } from '../actions/candidateActions';
+import { listCandidates, updateVoteCount } from '../actions/candidateActions';
 import MessageBox from '../Components/MessageBox';
 import LoadingBox from '../Components/LoadingBox';
 
@@ -9,7 +9,7 @@ export default function CandidatesScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
-    const candidateId = id;
+    const votingId = id;
 
     const [voteIds, setVoteIds] = useState([]);
     const [counter, setCounter] = useState(0);
@@ -17,11 +17,20 @@ export default function CandidatesScreen() {
     const candidateList = useSelector(state => state.candidateList);
     const { loading, error, candidates } = candidateList;
 
+    const updateVotes = useSelector(state => state.updateVotes);
+    const {
+        loading: loadingUpdate,
+        error: errorUpdate,
+        success: successUpdate } = updateVotes;
+
+
     let keyObjects;
     let numberOfPositions;
     let currentPositionCandidates = [];
 
     if (candidates) {
+
+        console.log(candidates, 'candidates');
         let _position = [];
         for (let index = 0; index < candidates.length; index++) {
             _position = [..._position, candidates[index].position]
@@ -29,11 +38,10 @@ export default function CandidatesScreen() {
         keyObjects = [...new Set(_position)];
         numberOfPositions = keyObjects.length;
         for (let index = 0; index < candidates.length; index++) {
-            if(candidates[index].position === keyObjects[counter]){
+            if (candidates[index].position === keyObjects[counter]) {
                 currentPositionCandidates = [...currentPositionCandidates, candidates[index]];
-            }  
+            }
         }
-    
     }
 
     const takeIdHandler = (cand) => {
@@ -46,13 +54,19 @@ export default function CandidatesScreen() {
         }
     };
 
+    const submitHandler = () => {
+        dispatch(updateVoteCount(votingId, voteIds));
+        // navigate('/done');
+    };
+
 
     useEffect(() => {
-        dispatch(listCandidates(candidateId));
+        dispatch(listCandidates(votingId));
+
         setVoteIds(voteIds)
         setCounter(counter)
         console.log(voteIds, ' ids')
-    }, [voteIds, counter, dispatch, candidateId]);
+    }, [voteIds, counter, dispatch, votingId]);
 
 
     return (
@@ -75,8 +89,11 @@ export default function CandidatesScreen() {
                             </div>
                         </div>
                     ))) : (<div>
+                        {loadingUpdate && (<LoadingBox></LoadingBox>)}
+                        {errorUpdate && (<MessageBox variant='danger'>{errorUpdate}</MessageBox>)}
+                        {successUpdate && navigate('/done')}
                         <div className='mt-10 right-20  absolute'>
-                            <button className='bg-indigo-600 text-white font-[poppins] py-2 px-6 rounded md:ml-8 
+                            <button onClick={() => submitHandler()} className='bg-indigo-600 text-white font-[poppins] py-2 px-6 rounded md:ml-8 
                             hover:bg-indigo-400 duration-500'
                             >submit</button></div>
                     </div>)
