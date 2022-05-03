@@ -26,10 +26,38 @@ export default function AdminScreen() {
                     <div>filter input</div>
                 </div>
             </div>
-            <div className='w-4/5 border-2 h-28 bg-white m-auto justify-between flex items-center text-black p-5'>
-                <div>student election</div>
+            <div className='w-4/5 border-2 bg-white m-auto justify-between flex items-center text-black p-5'>
+                <table className='w-full border-collapse'>
+                    <thead>
+                        <tr>
+                            <th className='text-left border border-gray-100 p-2'>Title of Election</th>
+                            <th className='text-left border border-gray-100 p-2'>Start Date</th>
+                            <th className='text-left border border-gray-100 p-2'>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className='odd:bg-gray-300'>
+                            <td className='text-left border border-gray-100 p-2'>Student Election</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 5:00 PM</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 6:00 PM</td>
+                        </tr>
+                        <tr className='odd:bg-gray-300'>
+                            <td className='text-left border border-gray-100 p-2'>Student Election</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 5:00 PM</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 6:00 PM</td>
+                        </tr>
+                        <tr className='odd:bg-gray-300'>
+                            <td className='text-left border border-gray-100 p-2'>Student Election</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 5:00 PM</td>
+                            <td className='text-left border border-gray-100 p-2'>03/24/2022, 6:00 PM</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                {/* <div>student election</div>
                 <div>Start date</div>
-                <div>end date</div>
+                <div>end date</div> */}
             </div>
         </div>
     )

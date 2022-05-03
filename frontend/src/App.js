@@ -3,6 +3,9 @@ import Navbar from './Components/Navbar';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom'
 import VotingCompletedScreen from './Screens/VotingCompletedScreen';
 import AdminScreen from './Screens/AdminScreen';
+import CreateVoteScreen from './Screens/CreateVoteScreen';
+import InputIdScreen from './Screens/InputIdScreen';
+import CreateCandidatesScreen from './Screens/CreateCandidatesScreen';
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
         <main className='mt-3 py-20'>
           <Routes>
             <Route path='/' element={<AdminScreen />}></Route>
+            <Route path='/id' element={<InputIdScreen />}></Route>
+            <Route path='/creatcandidates' element={<CreateCandidatesScreen />}></Route>
+            <Route path='/createvote' element={<CreateVoteScreen />}></Route>
             <Route path='/:id' element={<CandidatesScreen />}></Route>
             <Route path='/done' element={<VotingCompletedScreen />}></Route>
           </Routes>
