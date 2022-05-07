@@ -23,3 +23,18 @@ body {
 .alert-danger {
   @apply text-red-600 bg-slate-300
 }
+
+/* Checkout Steps */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.checkout-steps > div.active {
+  @apply border-t-indigo-500 decoration-indigo-500
+
+  /* color: #ff8000; */
+}

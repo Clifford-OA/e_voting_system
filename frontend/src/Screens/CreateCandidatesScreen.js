@@ -1,16 +1,18 @@
 import React from 'react'
+import CheckoutSteps from '../Components/CheckoutSteps'
 
 export default function CreateCandidatesScreen() {
     return (
         <div>
+            <CheckoutSteps step1 step2 step3></CheckoutSteps>
             <div className='w-full items-center justify-center'>
                 <div className='flex flex-col w-11/12 p-5 shadow-lg m-auto items-center justify-center'>
                     <div className='block justify-center items-center pb-5'>
                         <h1 className='text-6xl font-medium mb-10'>E-Voting Runner</h1>
                         <h1 className='text-7xl font-sans mb-5'>Create Candidates</h1>
                     </div>
-                    <div className='flex w-full shadow-lg justify-around px-10 pt-10 pb-20'>
-                        <form className='w-5/12'>
+                    <div className='lg:flex md:block w-full shadow-lg justify-around px-10 pt-10 pb-20'>
+                        <form className='lg:w-5/12 md:w-full'>
                             <div className='block w-full text-2xl p-3 mb-5'>
                                 <label className="pb-10">Name of Candidate :</label>
                                 <input className='mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-2xlplaceholder-slate-400
@@ -49,7 +51,7 @@ export default function CreateCandidatesScreen() {
                             hover:bg-indigo-400 duration-500'
                                 >Add <i className='shadow-sm justify-center items-center bg-slate-400 rounded  text-white'><ion-icon name="arrow-forward-outline"></ion-icon></i> </button></div>
                         </form>
-                        <div className='w-5/12 '>
+                        <div className='lg:w-5/12 md:w-full'>
                             <div className='flex p-3 shadow-lg rounded-sm'>
                                 <img className='w-2/12 border-2 mr-5' src='images/1.jpg' alt='candidate imag' />
                                 <div className='flex flex-col border p-2 w-11/12'>
@@ -59,9 +61,9 @@ export default function CreateCandidatesScreen() {
                                 <div className=' border  '>
                                     <button className='h-full bg-red-600 text-white font-[poppins] py-2 rounded px-2
                                     hover:bg-red-400 duration-500'
-                                    >Delete <i className='shadow-sm justify-center items-center bg-slate-400 rounded  text-white'>
+                                    >remove <i className='shadow-sm justify-center items-center bg-slate-400 rounded  text-white'>
                                             <ion-icon name="arrow-forward-outline"></ion-icon>
-                                            </i>
+                                        </i>
                                     </button>
                                 </div>
                             </div>

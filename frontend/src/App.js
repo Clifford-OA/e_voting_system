@@ -6,6 +6,7 @@ import AdminScreen from './Screens/AdminScreen';
 import CreateVoteScreen from './Screens/CreateVoteScreen';
 import InputIdScreen from './Screens/InputIdScreen';
 import CreateCandidatesScreen from './Screens/CreateCandidatesScreen';
+import AddPositionScreen from './Screens/AddPositionScreen';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Routes>
             <Route path='/' element={<AdminScreen />}></Route>
             <Route path='/id' element={<InputIdScreen />}></Route>
-            <Route path='/creatcandidates' element={<CreateCandidatesScreen />}></Route>
+            <Route path='/position' element={<AddPositionScreen />}></Route>
+            <Route path='/createcandidates' element={<CreateCandidatesScreen />}></Route>
             <Route path='/createvote' element={<CreateVoteScreen />}></Route>
             <Route path='/:id' element={<CandidatesScreen />}></Route>
             <Route path='/done' element={<VotingCompletedScreen />}></Route>
